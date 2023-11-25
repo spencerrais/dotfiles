@@ -1,0 +1,25 @@
+pkgname=spencerrais-devel-base
+pkgver=2023.10.16+40eadf5
+pkgrel=1
+pkgdesc="Development base config for spencerrais' systems"
+arch=('any')
+url="https://github.com/spencerrais/dotfiles/arch-packages/"
+license=('OSL-3.0')
+depends=(
+    'lefthook'
+
+    # Editors
+    'neovim-git'
+    'python-pynvim'
+
+    # Containers
+    'podman'
+    'podman-compose'
+
+    # Git
+    'git'
+    'github-cli'
+)
+conflicts=(
+)
+groups=('spencerrais')

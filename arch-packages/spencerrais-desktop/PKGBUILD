@@ -1,0 +1,22 @@
+pkgname=spencerrais-desktop
+pkgver=2023.10.16+40eadf5
+pkgrel=1
+pkgdesc="Desktop system configuration for spencerrais' systems"
+arch=('any')
+url="https://github.com/spencerrais/dotfiles/arch-packages/"
+license=('OSL-3.0')
+depends=(
+    # Multimedia
+    'spotify'
+
+    # Console
+    'alacritty'
+
+    # Browser
+    'brave-bin'
+)
+conflicts=(
+    'gnome-terminal'
+    'epiphany'
+)
+groups=('spencerrais')

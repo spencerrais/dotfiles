@@ -1,0 +1,42 @@
+#!/bin/bash
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
+if ! command -v yay &> /dev/null
+then
+  echo "yay is not installed on system, trying to install it"
+
+  sudo pacman -S --noconfirm --needed git base-devel
+  git clone https://aur.archlinux.org/yay.git
+  cd yay
+  makepkg -si --noconfirm
+  cd ..
+  rm -rf yay # force needed, because of .git folder
+fi
+
+{{- else if and (eq .chezmoi.os "linux") (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.idLike "debian")) -}}
+set -e
+echo "Creating binary folder, might be overwritten by chezmoi afterwards."
+mkdir -p $HOME/.bin
+export PATH="$PATH:$HOME/.bin"
+
+packages=$(cat <<EOF | grep -v "^$" | grep -v "#" | tr "\n" " "
+  {{ template "apt-packages.tmpl" . }}
+EOF
+)
+
+echo "Installing basic apt packages"
+sudo apt-get update && sudo apt-get install -y $packages
+
+{{- else if eq .chezmoi.os "darwin" -}}
+# macOS-specific code for Homebrew installation
+if ! command -v brew &> /dev/null; then
+  echo "Homebrew is not installed on macOS, trying to install it"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+{{ end -}}
+
+if ! [[ $SHELL == *"zsh"* ]]; then
+  echo "Changing default shell to zsh"
+  sudo chsh -s $(which zsh)
+fi
+
+{{/* vim: set filetype=bash: */}}

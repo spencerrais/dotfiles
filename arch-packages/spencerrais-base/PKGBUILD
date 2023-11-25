@@ -1,0 +1,18 @@
+pkgname=spencerrais-base
+pkgver=2023.10.16+40eadf5
+pkgrel=1
+pkgdesc="Base system configuration for spencerrais' systems"
+arch=('any')
+url="https://github.com/spencerrais/dotfiles/arch-packages/"
+license=('OSL-3.0')
+depends=(
+    'chezmoi'
+    'fzf'
+    'starship'
+    'wget'
+    'zsh'
+    # System stuff
+    'systemd-boot-pacman-hook'
+)
+conflicts=(
+)groups=('spencerrais')
