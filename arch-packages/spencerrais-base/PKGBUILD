@@ -11,6 +11,7 @@ depends=(
     'starship'
     'wget'
     'zsh'
+    'sd'
     # System stuff
     'systemd-boot-pacman-hook'
 )
