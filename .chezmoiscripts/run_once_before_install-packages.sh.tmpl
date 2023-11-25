@@ -35,10 +35,4 @@ then
 fi
 {{ end }}
 
-if ! [[ $SHELL == *"zsh"* ]]; 
-then
-  echo "Changing default shell to zsh"
-  sudo chsh -s $(which zsh)
-fi
-
 {{/* vim: set filetype=bash: */}}
