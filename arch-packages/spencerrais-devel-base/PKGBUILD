@@ -1,5 +1,5 @@
 pkgname=spencerrais-devel-base
-pkgver=2023.11.25+2ca2fab
+pkgver=2023.11.25+bf2570b
 pkgrel=1
 pkgdesc="Development base config for spencerrais' systems"
 arch=('any')
@@ -9,6 +9,8 @@ depends=(
     'lefthook'
     'neovim-git'
     'python-pynvim'
+    'nodejs'
+    'ripgrep'
     'podman'
     'podman-compose'
     'git'

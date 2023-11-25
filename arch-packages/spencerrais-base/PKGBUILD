@@ -1,5 +1,5 @@
 pkgname=spencerrais-base
-pkgver=2023.11.25+e2dde95
+pkgver=2023.11.25+bf2570b
 pkgrel=1
 pkgdesc="Base system configuration for spencerrais' systems"
 arch=('any')
@@ -8,12 +8,17 @@ license=('OSL-3.0')
 depends=(
     'chezmoi'
     'fzf'
+    'fd'
     'starship'
     'ttf-hack-nerd'
     'wget'
     'zsh'
     'sd'
     'less'
+    'python-pip'
     'systemd-boot-pacman-hook'
+    'wl-clipboard'
+    'xclip'
+    'tmux'
 )
 groups=('spencerrais')
