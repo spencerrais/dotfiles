@@ -11,8 +11,7 @@ depends=(
     'starship'
     'wget'
     'zsh'
-
-    # System stuff
+    'sd'
     'systemd-boot-pacman-hook'
 )
 conflicts=(
