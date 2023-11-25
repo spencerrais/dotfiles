@@ -1,5 +1,5 @@
 pkgname=spencerrais-base
-pkgver=2023.11.25+2ca2fab
+pkgver=2023.11.25+e2dde95
 pkgrel=1
 pkgdesc="Base system configuration for spencerrais' systems"
 arch=('any')
@@ -9,6 +9,7 @@ depends=(
     'chezmoi'
     'fzf'
     'starship'
+    'ttf-hack-nerd'
     'wget'
     'zsh'
     'sd'
