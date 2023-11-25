@@ -28,13 +28,15 @@ sudo apt-get update && sudo apt-get install -y $packages
 
 {{- else if eq .chezmoi.os "darwin" -}}
 # macOS-specific code for Homebrew installation
-if ! command -v brew &> /dev/null; then
+if ! command -v brew &> /dev/null; 
+then
   echo "Homebrew is not installed on macOS, trying to install it"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-{{ end -}}
+{{ end }}
 
-if ! [[ $SHELL == *"zsh"* ]]; then
+if ! [[ $SHELL == *"zsh"* ]]; 
+then
   echo "Changing default shell to zsh"
   sudo chsh -s $(which zsh)
 fi
