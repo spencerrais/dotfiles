@@ -19,13 +19,15 @@ for package in $PACKAGES; do
     paru -U --nochroot
     cd -
 done
+{{ else if eq .chezmoi.os "darwin" }}
+brew bundle
+pip3 install --upgrade pip
+pip3 install pynvim podman-compose
+{{ end }}
 
 if ! [[ $SHELL == *"zsh"* ]]; 
 then
   echo "Changing default shell to zsh"
   chsh -s $(which zsh)
 fi
-
-{{ end }}
-
 {{/* vim: set filetype=bash: */}}
