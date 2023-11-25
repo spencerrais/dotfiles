@@ -16,14 +16,14 @@ PACKAGES=${@:-{{ .chezmoi.sourceDir }}/arch-packages/spencerrais*}
 for package in $PACKAGES; do
     cd "$package"
     rm -f *.pkg.tar.xz
-    yay -U --noconfirm
+    paru -U --nochroot
     cd -
 done
 
 if ! [[ $SHELL == *"zsh"* ]]; 
 then
   echo "Changing default shell to zsh"
-  sudo chsh -s $(which zsh)
+  chsh -s $(which zsh)
 fi
 
 {{ end }}

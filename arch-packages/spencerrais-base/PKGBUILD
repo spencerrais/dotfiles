@@ -1,5 +1,5 @@
 pkgname=spencerrais-base
-pkgver=2023.11.24+2338747
+pkgver=2023.11.25+2ca2fab
 pkgrel=1
 pkgdesc="Base system configuration for spencerrais' systems"
 arch=('any')
@@ -12,7 +12,7 @@ depends=(
     'wget'
     'zsh'
     'sd'
+    'less'
     'systemd-boot-pacman-hook'
 )
-conflicts=(
-)groups=('spencerrais')
+groups=('spencerrais')

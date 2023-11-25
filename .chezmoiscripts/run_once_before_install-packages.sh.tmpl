@@ -1,15 +1,16 @@
 #!/bin/bash
+echo "Starting paru installation script"
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
-if ! command -v yay &> /dev/null
+if ! command -v paru &> /dev/null
 then
-  echo "yay is not installed on system, trying to install it"
+  echo "paru is not installed on system, trying to install it"
 
   sudo pacman -S --noconfirm --needed git base-devel
-  git clone https://aur.archlinux.org/yay.git
-  cd yay
+  git clone https://aur.archlinux.org/paru.git
+  cd paru
   makepkg -si --noconfirm
   cd ..
-  rm -rf yay # force needed, because of .git folder
+  rm -rf paru # force needed, because of .git folder
 fi
 
 {{- else if and (eq .chezmoi.os "linux") (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.idLike "debian")) -}}
