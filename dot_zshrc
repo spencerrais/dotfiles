@@ -1,3 +1,9 @@
+# handle remapping of capslock to ctrl in x or wayland
+if [[ $XDG_SESSION_TYPE == "x11" ]]; then
+    setxkbmap -option ctrl:nocaps
+elif [[ $XDG_SESSION_TYPE == "wayland" ]]; then
+    gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+fi
 
 # The following lines were added by compinstall
 
