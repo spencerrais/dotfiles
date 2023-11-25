@@ -6,7 +6,7 @@
 # Hashes of the packages:
 # spencerrais-base: {{ include "arch-packages/spencerrais-base/PKGBUILD" | sha256sum }}
 # spencerrais-desktop: {{ include "arch-packages/spencerrais-desktop/PKGBUILD" | sha256sum }}
-# spencerrais-devel-base: {{ include "arch-packages-spencerrais-devel-base/PKGBUILD" | sha256sum }}
+# spencerrais-devel-base: {{ include "arch-packages/spencerrais-devel-base/PKGBUILD" | sha256sum }}
 
 set -uo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
