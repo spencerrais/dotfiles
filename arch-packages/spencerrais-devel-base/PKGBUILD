@@ -1,5 +1,5 @@
 pkgname=spencerrais-devel-base
-pkgver=2023.11.24+2338747
+pkgver=2023.11.25+2ca2fab
 pkgrel=1
 pkgdesc="Development base config for spencerrais' systems"
 arch=('any')
@@ -13,7 +13,5 @@ depends=(
     'podman-compose'
     'git'
     'github-cli'
-)
-conflicts=(
 )
 groups=('spencerrais')
