@@ -1,0 +1,11 @@
+lefthook.yml
+arch-packages/
+README.md 
+LICENSE
+{{ if eq .chezmoi.os "darwin" }}
+.config/paru/paru.conf
+{{ end }}
+
+{{ if eq .chezmoi.os "linux" }}
+Brewfile
+{{ end }}

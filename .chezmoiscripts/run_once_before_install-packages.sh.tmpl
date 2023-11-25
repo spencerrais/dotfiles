@@ -28,11 +28,15 @@ echo "Installing basic apt packages"
 sudo apt-get update && sudo apt-get install -y $packages
 
 {{- else if eq .chezmoi.os "darwin" -}}
-# macOS-specific code for Homebrew installation
+# macOS-specific code for Homebrew installation and zsh upgrading
 if ! command -v brew &> /dev/null; 
 then
   echo "Homebrew is not installed on macOS, trying to install it"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  brew install zsh
+  brew_zsh_path=$(which zsh)
+  echo $brew_zsh_path | sudo tee -a /etc/shells
+  chsh -s $brew_zsh_path
 fi
 {{ end }}
 
