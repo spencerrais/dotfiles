@@ -1,3 +1,4 @@
+export LANG=en_US.UTF-8
 # aliases
 alias vi='nvim'
 alias vim='nvim'
@@ -28,6 +29,8 @@ if [[ $XDG_SESSION_TYPE == "x11" ]]; then
 elif [[ $XDG_SESSION_TYPE == "wayland" ]]; then
     gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 fi
+{{- else if eq .chezmoi.os "darwin" -}}
+export PATH="/Applications/Alacritty.app/Contents/MacOS:$PATH"
 {{ end -}}
 # The following lines were added by compinstall
 
