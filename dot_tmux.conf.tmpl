@@ -33,14 +33,9 @@ set -g display-time 4000
 
 # Refresh 'status-left' and 'status-right' more often, from every 15s to 5s
 set -g status-interval 5
-{{ if (eq .chezmoi.os "darwin") }}
-# (OS X) Fix pbcopy/pbpaste for old tmux versions (pre 2.6)
-set -g default-command "reattach-to-user-namespace -l $SHELL"
-{{ end }}
 # Upgrade $TERM
 set -g default-terminal "tmux-256color"
-set -sa terminal-overrides ',alacritty:RGB'
-
+set -sa terminal-overrides ',alacritty:rgb'
 # Emacs key bindings in tmux command prompt (prefix + :) are better than
 # vi keys, even for vim users
 set -g status-keys emacs
