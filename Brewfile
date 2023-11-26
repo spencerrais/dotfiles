@@ -15,6 +15,7 @@ brew "nodejs"
 brew "ripgrep"
 brew "podman"
 brew "git"
+brew "lefthook"
 
 cask "font-hack-nerd-font"
 cask "spotify"

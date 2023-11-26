@@ -20,6 +20,8 @@ for package in $PACKAGES; do
     cd -
 done
 {{ else if eq .chezmoi.os "darwin" }}
+# Hash of the Brewfile
+# Brewfile: {{ include "Brewfile" | sha256sum }}
 brew bundle
 pip3 install --upgrade pip
 pip3 install pynvim podman-compose
