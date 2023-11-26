@@ -1,10 +1,34 @@
+# aliases
+alias vi='nvim'
+alias vim='nvim'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ls='ls -lh --color=auto'
+alias ll='ls -lah'
+alias g='git'
+alias gs='git status'
+alias gp='git pull'
+alias zshconfig='nvim ~/.zshrc'
+alias c='clear'
+alias grep='grep --color=auto'
+
+# function aliases
+nvim() {
+    if [ $# -eq 0 ]; then
+        command nvim .
+    else
+        command nvim "$@"
+    fi
+}
+
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
 # handle remapping of capslock to ctrl in x or wayland
 if [[ $XDG_SESSION_TYPE == "x11" ]]; then
     setxkbmap -option ctrl:nocaps
 elif [[ $XDG_SESSION_TYPE == "wayland" ]]; then
     gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 fi
-
+{{ end -}}
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
@@ -20,7 +44,7 @@ zstyle ':completion:*' preserve-prefix '//[^/]##/'
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' squeeze-slashes true
-zstyle :compinstall filename '/home/spencer/.zshrc'
+zstyle :compinstall filename '{{ .chezmoi.homeDir }}/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -35,3 +59,4 @@ bindkey -v
 # End of lines configured by zsh-newuser-install
 
 eval "$(starship init zsh)"
+{{/* vim: set filetype=bash: */}}
