@@ -1,6 +1,8 @@
 {{ $name := promptString "git user name:" -}}
 {{ $email := promptString "git email address:" -}}
+{{ $isGCP := promptBool "GCP setup?" -}}
 [data]
 	name = {{ $name | quote }}
 	email = {{ $email | quote }}
+	isGCP = {{ $isGCP }}
 {{/* vim: set filetype=toml: */}}

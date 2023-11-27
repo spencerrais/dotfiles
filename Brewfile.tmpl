@@ -23,3 +23,6 @@ cask "alacritty"
 cask "brave-browser"
 cask "1password"
 cask "podman-desktop"
+{{- if .isGCP }}
+cask "google-cloud-sdk"
+{{ end -}}
