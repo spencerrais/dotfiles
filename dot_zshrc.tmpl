@@ -33,8 +33,11 @@ elif [[ $XDG_SESSION_TYPE == "wayland" ]]; then
 fi
 {{ else if eq .chezmoi.os "darwin" -}}
 export PATH="/Applications/Alacritty.app/Contents/MacOS:$PATH"
+    {{- if .isGCP }}
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+    {{ end -}}
 {{ end -}}
-
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
@@ -55,6 +58,7 @@ zstyle :compinstall filename '{{ .chezmoi.homeDir }}/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -64,5 +68,6 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
+eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 {{- /* vim: set filetype=zsh: */ -}}

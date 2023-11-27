@@ -1,0 +1,11 @@
+pkgname=spencerrais-devel-gcp
+pkgver=2023.11.24+2338747
+pkgrel=1
+pkgdesc="Development system configuration for spencerrais' GCP systems"
+arch=('any')
+url="https://github.com/spencerrais/dotfiles/arch-packages/"
+license=('OSL-3.0')
+depends=(
+    'google-cloud-sdk'
+)
+groups=('spencerrais')
