@@ -1,0 +1,15 @@
+[font]
+size = 14
+
+[font.bold]
+family = "Hack Nerd Font Mono"
+
+[font.bold_italic]
+family = "Hack Nerd Font Mono"
+
+[font.italic]
+family = "Hack Nerd Font Mono"
+
+[font.normal]
+family = "Hack Nerd Font Mono"
+
