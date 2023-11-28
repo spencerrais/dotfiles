@@ -9,12 +9,17 @@
 # spencerrais-devel-base: {{ include "arch-packages/spencerrais-devel-base/PKGBUILD" | sha256sum }}
 {{- if .isGCP }}
 # spencerrais-devel-base: {{ include "arch-packages/spencerrais-devel-gcp/PKGBUILD" | sha256sum }}
-{{ end -}}
+{{ end }}
 set -uo pipefail
 trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 
+{{- if .isGCP }}
 PACKAGES=${@:-{{ .chezmoi.sourceDir }}/arch-packages/spencerrais*}
-
+{{ else }}
+PACKAGES=${@:-{{ .chezmoi.sourceDir }}/arch-packages/spencerrais-base}
+# remove spencerrais-devel-gcp if not on GCP
+PACKAGES=$(echo $PACKAGES | sed 's/.*spencerrais-devel-gcp.*//')
+{{ end }}
 for package in $PACKAGES; do
     cd "$package"
     rm -f *.pkg.tar.xz

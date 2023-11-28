@@ -6,6 +6,6 @@ arch=('any')
 url="https://github.com/spencerrais/dotfiles/arch-packages/"
 license=('OSL-3.0')
 depends=(
-    'google-cloud-sdk'
+    'google-cloud-cli'
 )
 groups=('spencerrais')
