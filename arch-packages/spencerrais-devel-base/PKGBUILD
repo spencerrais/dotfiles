@@ -16,5 +16,6 @@ depends=(
     'pods'
     'git'
     'github-cli'
+    'direnv'
 )
 groups=('spencerrais')
