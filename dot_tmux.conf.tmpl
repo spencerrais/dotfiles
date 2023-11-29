@@ -56,4 +56,8 @@ bind R source-file '~/.tmux.conf' \; display-message "Config reloaded"
 # If prefix is 'C-b'
 bind C-b send-prefix
 bind b last-window
+
+# keybindings for terminal scrolling
+bind-key -n C-u copy-mode \; send-keys -X halfpage-up
+bind-key -n C-d copy-mode \; send-keys -X halfpage-down
 {{/* vim: set filetype=tmux: */}}
