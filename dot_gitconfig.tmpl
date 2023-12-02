@@ -13,9 +13,10 @@
 [pull] 
 	rebase = true
 [color]
-	ui =auto
+	ui = auto
 [rebase]
 	autosquash = true
+	autostatsh = true
 [init]
   	defaultBranch = main
 [merge]
@@ -25,6 +26,8 @@
 [alias]
 	nah = "!git reset --hard && git clean -df"
 	undo = "reset --soft HEAD~1"
+	amend = "commit --amend --no-edit"
+	unstash = "stash pop"
 [commit]
 	gpgsign = true
 [gpg]
