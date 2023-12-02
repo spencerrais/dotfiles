@@ -39,6 +39,36 @@ require('lazy').setup({
   -- vim <-> tmux config
   'christoomey/vim-tmux-navigator',
 
+  -- autoformat for those which dont have them in the lsp
+  {
+    "stevearc/conform.nvim",
+    event = "BufWritePre", -- load the plugin before saving
+    keys = {
+      {
+        "<leader>f",
+        function() require("conform").format({ lsp_fallback = true }) end,
+        desc = "Format",
+      },
+    },
+    opts = {
+      formatters_by_ft = {
+        -- first use isort and then black
+        python = { "isort", "black" },
+        -- "inject" is a special formatter from conform.nvim, which
+        -- formats treesitter-injected code. Basically, this makes
+        -- conform.nvim format python codeblocks inside a markdown file.
+        markdown = { "inject" },
+      },
+      -- enable format-on-save
+      format_on_save = {
+        -- when no formatter is setup for a filetype, fallback to formatting
+        -- via the LSP. This is relevant e.g. for taplo (toml LSP), where the
+        -- LSP can handle the formatting for us
+        lsp_fallback = true,
+      },
+    },
+  },
+
   -- Github Copilot
   {
     "zbirenbaum/copilot.lua",
@@ -235,9 +265,18 @@ require('lazy').setup({
 
   require 'spencerrais.plugins.autoformat',
   require 'spencerrais.plugins.debug',
-  require 'spencerrais.plugins.python_files',
 }, {})
 
+-- basic python settings
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "python",
+  callback = function()
+    vim.opt_local.expandtab = true
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.tabstop = 4
+    vim.opt_local.softtabstop = 4
+  end
+})
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
