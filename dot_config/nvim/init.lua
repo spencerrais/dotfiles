@@ -54,6 +54,9 @@ require('lazy').setup({
       formatters_by_ft = {
         -- first use isort and then black
         python = { "isort", "black" },
+        -- first use prettier and then eslint
+        javascript = { "prettier", "eslint" },
+        typescript = { "prettier", "eslint" },
         -- "inject" is a special formatter from conform.nvim, which
         -- formats treesitter-injected code. Basically, this makes
         -- conform.nvim format python codeblocks inside a markdown file.
@@ -277,6 +280,18 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.softtabstop = 4
   end
 })
+
+-- basic js/ts settings
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "typescript" },
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.expandtab = true
+  end
+})
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
