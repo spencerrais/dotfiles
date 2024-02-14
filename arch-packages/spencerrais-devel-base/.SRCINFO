@@ -1,0 +1,21 @@
+pkgbase = spencerrais-devel-base
+	pkgdesc = Development base config for spencerrais' systems
+	pkgver = 2023.11.26+1fabce8
+	pkgrel = 1
+	url = https://github.com/spencerrais/dotfiles/arch-packages/
+	arch = any
+	groups = spencerrais
+	license = OSL-3.0
+	depends = lefthook
+	depends = neovim-git
+	depends = python-pynvim
+	depends = nodejs
+	depends = ripgrep
+	depends = podman
+	depends = podman-compose
+	depends = pods
+	depends = git
+	depends = github-cli
+	depends = direnv
+
+pkgname = spencerrais-devel-base

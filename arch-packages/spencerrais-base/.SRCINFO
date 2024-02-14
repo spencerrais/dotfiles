@@ -1,0 +1,24 @@
+pkgbase = spencerrais-base
+	pkgdesc = Base system configuration for spencerrais' systems
+	pkgver = 2023.11.25+bf2570b
+	pkgrel = 1
+	url = https://github.com/spencerrais/dotfiles/arch-packages/
+	arch = any
+	groups = spencerrais
+	license = OSL-3.0
+	depends = chezmoi
+	depends = fzf
+	depends = fd
+	depends = starship
+	depends = ttf-hack-nerd
+	depends = wget
+	depends = zsh
+	depends = sd
+	depends = less
+	depends = python-pip
+	depends = systemd-boot-pacman-hook
+	depends = wl-clipboard
+	depends = xclip
+	depends = tmux
+
+pkgname = spencerrais-base

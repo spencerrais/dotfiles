@@ -1,0 +1,15 @@
+pkgbase = spencerrais-desktop
+	pkgdesc = Desktop system configuration for spencerrais' systems
+	pkgver = 2023.11.24+2338747
+	pkgrel = 1
+	url = https://github.com/spencerrais/dotfiles/arch-packages/
+	arch = any
+	groups = spencerrais
+	license = OSL-3.0
+	depends = spotify
+	depends = alacritty
+	depends = brave-bin
+	conflicts = gnome-terminal
+	conflicts = epiphany
+
+pkgname = spencerrais-desktop

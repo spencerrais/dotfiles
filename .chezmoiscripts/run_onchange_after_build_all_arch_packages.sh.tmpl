@@ -16,10 +16,11 @@ trap 's=$?; echo "$0: Error on line "$LINENO": $BASH_COMMAND"; exit $s' ERR
 {{- if .isGCP }}
 PACKAGES=${@:-{{ .chezmoi.sourceDir }}/arch-packages/spencerrais*}
 {{ else }}
-PACKAGES=${@:-{{ .chezmoi.sourceDir }}/arch-packages/spencerrais-base}
+PACKAGES=${@:-{{ .chezmoi.sourceDir }}/arch-packages/spencerrais*}
 # remove spencerrais-devel-gcp if not on GCP
 PACKAGES=$(echo $PACKAGES | sed 's/.*spencerrais-devel-gcp.*//')
 {{ end }}
+curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg  | gpg --import -
 for package in $PACKAGES; do
     cd "$package"
     rm -f *.pkg.tar.xz
