@@ -80,7 +80,7 @@ require('lazy').setup({
     config = function()
       require('copilot').setup({
         panel = {
-          enabled = true,
+          enabled = false,
           auto_refresh = false,
           keymap = {
             jump_prev = "[[",
@@ -95,7 +95,7 @@ require('lazy').setup({
           },
         },
         suggestion = {
-          enabled = true,
+          enabled = false,
           auto_trigger = true,
           debounce = 75,
           keymap = {
@@ -108,7 +108,7 @@ require('lazy').setup({
           },
         },
         filetypes = {
-          yaml = false,
+          yaml = true,
           markdown = false,
           help = false,
           gitcommit = false,
@@ -123,6 +123,14 @@ require('lazy').setup({
       })
     end,
   },
+
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
+    end
+  },
+
 
 
   -- NOTE: This is where your plugins related to LSP can be installed.
@@ -632,6 +640,12 @@ local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
+local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+end
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -652,8 +666,8 @@ cmp.setup {
       select = true,
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
+      if cmp.visible() and has_words_before() then
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
       elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
       else
@@ -671,6 +685,7 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
+    { name = 'copilot', group_index = 2 },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
   },
