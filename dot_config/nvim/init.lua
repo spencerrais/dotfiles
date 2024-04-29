@@ -275,7 +275,6 @@ require('lazy').setup({
   },
 
   require 'spencerrais.plugins.autoformat',
-  require 'spencerrais.plugins.debug',
 }, {})
 
 -- basic python settings
