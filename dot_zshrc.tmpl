@@ -38,6 +38,9 @@ source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
 source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
     {{ end -}}
 {{ end -}}
+
+# completion settings in fpath
+fpath=($HOME/.zfunc $fpath)
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
