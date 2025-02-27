@@ -6,23 +6,39 @@
 	editor = vim
 	excludesfile = "~/.config/git/gitignore"
 	autocrlf = input
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
 [push]
-	default = current
+	default = simple
+	autoSetupRemote = true
+	followTags = true
 [fetch]
 	prune = true
+	pruneTags = true
+	all = true
 [pull] 
 	rebase = true
+[merge]
+	conflictStyle = zdiff3
 [color]
 	ui = auto
 [rebase]
 	autosquash = true
 	autostash = true
+	updateRefs = true
 [init]
   	defaultBranch = main
 [merge]
   	ff = only
 [diff]
-  	colorMoved = zebra
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 [alias]
 	nah = "!git reset --hard && git clean -df"
 	undo = "reset --soft HEAD~1"
@@ -30,7 +46,8 @@
 	unstash = "stash pop"
 [gpg]
 	format = ssh
+[commit]
+	gpgSign = true
+	verbose = true
 [help]
-	# Auto-correct Git typos, leaving one second to interrupt the suggestion with Ctrl+C.
-	# Found here: https://wikis.world/@LucasWerkmeister/110865161641795531
-	autocorrect = 15
+	autocorrect = prompt
