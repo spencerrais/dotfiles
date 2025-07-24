@@ -30,6 +30,7 @@ done
 {{ else if eq .chezmoi.os "darwin" }}
 # Hash of the Brewfile
 # Brewfile: {{ include "Brewfile.tmpl" | sha256sum }}
+sudo xcode-select --install
 brew bundle
 pip3 install --upgrade pip
 pip3 install pynvim podman-compose
