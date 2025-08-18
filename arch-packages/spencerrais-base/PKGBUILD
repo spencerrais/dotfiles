@@ -20,5 +20,7 @@ depends=(
     'wl-clipboard'
     'xclip'
     'tmux'
+    'bob'
+    'basedpyright'
 )
 groups=('spencerrais')

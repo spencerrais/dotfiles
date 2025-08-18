@@ -4,6 +4,10 @@ Workflow based on using tmux w/neovim along with a web browser for either Arch L
 Common packages are installed via the arch-packages folder or the brewfile for MacOS.
 
 Simple neovim config which gets out of the way, but still provides benefits of modern tooling. 
+It is recommended to use neovim nightly for now, with:
+```bash
+bob use nightly
+```
 
 The installation can be as simple as 
 ```bash
