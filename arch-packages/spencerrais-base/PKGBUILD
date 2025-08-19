@@ -21,6 +21,5 @@ depends=(
     'xclip'
     'tmux'
     'bob'
-    'basedpyright'
 )
 groups=('spencerrais')
