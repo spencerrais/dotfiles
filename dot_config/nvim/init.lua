@@ -94,7 +94,7 @@ vim.keymap.set('n', '<leader>q', ':quit<CR>')
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 -- finder for files, buffers, help, lsp symbols, marks
-vim.keymap.set('n', '<leader>ff', ":Pick files sort=visit_recent<CR>")
+vim.keymap.set('n', '<leader>ff', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>fb', ":Pick buffers<CR>")
 vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
 vim.keymap.set('n', '<leader>fs', ":Pick lsp scope='document_symbol'<CR>", { desc = 'Pick current buffer LSP symbols' })
