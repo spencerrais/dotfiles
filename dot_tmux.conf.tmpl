@@ -62,4 +62,12 @@ bind b last-window
 # keybindings for terminal scrolling
 bind-key -n C-u copy-mode \; send-keys -X halfpage-up
 bind-key -n C-d copy-mode \; send-keys -X halfpage-down
+
+# --- Status bar sizing ---
+set -g status-left-length 80
+set -g status-right-length 80
+
+# --- Show full session name on the left ---
+# #S = session name
+set -g status-left "[#S] "
 {{/* vim: set filetype=tmux: */}}
