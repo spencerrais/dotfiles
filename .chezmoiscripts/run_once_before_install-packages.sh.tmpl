@@ -12,6 +12,9 @@ then
   cd ..
   rm -rf paru # force needed, because of .git folder
   paru # update for local database
+
+  # paru install of zsh-autosuggestions isn't ideal
+  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 fi
 
 {{- else if and (eq .chezmoi.os "linux") (or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelease.idLike "debian")) -}}
@@ -30,7 +33,7 @@ sudo apt-get update && sudo apt-get install -y $packages
 
 {{- else if eq .chezmoi.os "darwin" -}}
 # macOS-specific code for Homebrew installation and zsh upgrading
-if ! command -v brew &> /dev/null; 
+if ! command -v brew &> /dev/null;
 then
   echo "Homebrew is not installed on macOS, trying to install it"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

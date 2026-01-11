@@ -24,6 +24,7 @@ nvim() {
 }
 
 {{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # handle remapping of capslock to ctrl in x or wayland
 if [[ $XDG_SESSION_TYPE == "x11" ]]; then
     setxkbmap -option ctrl:nocaps
@@ -31,6 +32,7 @@ elif [[ $XDG_SESSION_TYPE == "wayland" ]]; then
     gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 fi
 {{ else if eq .chezmoi.os "darwin" -}}
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 export PATH="/Applications/Alacritty.app/Contents/MacOS:$PATH"
     {{- if .isGCP }}
 source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
