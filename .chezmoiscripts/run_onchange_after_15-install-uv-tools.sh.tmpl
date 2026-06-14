@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Re-run when uv tool list changes:
+# uv-tools-v1
+# pynvim==0.6.0
+# ruff>=0.15,<0.16
+# basedpyright>=1.39,<1.40
+# sqlfluff==4.2.0
+
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate bash)"
+fi
+
+if ! command -v uv >/dev/null 2>&1; then
+  echo "uv is required but not installed. Run 'mise install' first."
+  exit 1
+fi
+
+uv_tools=(
+  "pynvim==0.6.0"
+  "ruff>=0.15,<0.16"
+  "basedpyright>=1.39,<1.40"
+  "sqlfluff==4.2.0"
+)
+
+for tool in "${uv_tools[@]}"; do
+  uv tool install "$tool"
+done

@@ -34,10 +34,6 @@ fi
 {{ else if eq .chezmoi.os "darwin" -}}
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 export PATH="/Applications/Alacritty.app/Contents/MacOS:$PATH"
-    {{- if .isGCP }}
-source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
-    {{ end -}}
 {{ end -}}
 
 # completion settings in fpath
@@ -72,6 +68,7 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
-eval "$(direnv hook zsh)"
+eval "$(mise activate zsh)"
+eval "$(atuin init zsh)"
 eval "$(starship init zsh)"
 {{- /* vim: set filetype=zsh: */ -}}
