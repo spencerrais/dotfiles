@@ -3,7 +3,6 @@ set -euo pipefail
 
 # Re-run when mise config changes:
 # {{ include "dot_config/mise/config.toml.tmpl" | sha256sum }}
-# {{ include "dot_config/mise/conf.d/system-packages.toml.tmpl" | sha256sum }}
 
 if ! command -v mise >/dev/null 2>&1; then
   echo "mise is required but not installed."

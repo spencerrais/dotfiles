@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "arch") -}}
+packages=(
+  chezmoi
+  git
+  wget
+
+  atuin
+  fd
+  fzf
+  github-cli
+  jq
+  starship
+
+  neovim
+  tmux
+  zsh
+  zsh-autosuggestions
+
+  docker
+  docker-compose
+)
+
+sudo pacman -S --needed "${packages[@]}"
+{{ else if eq .chezmoi.os "darwin" -}}
+packages=(
+  chezmoi
+  git
+  wget
+
+  atuin
+  fd
+  fzf
+  gh
+  jq
+  starship
+
+  neovim
+  tmux
+  zsh-autosuggestions
+
+  docker
+  docker-compose
+)
+
+brew install "${packages[@]}"
+{{ end -}}
