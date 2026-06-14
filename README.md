@@ -1,13 +1,15 @@
 # dotfiles
 Workflow based on using tmux w/neovim along with a web browser for either Arch Linux or MacOS.
 
-Common packages are installed via the arch-packages folder or the brewfile for MacOS.
-
 Simple neovim config which gets out of the way, but still provides benefits of modern tooling. 
-It is recommended to use neovim nightly for now, with:
-```bash
-bob use nightly
-```
+
+This repo uses chezmoi for dotfiles and mise for the portable tool layer.
+
+- chezmoi applies dotfiles and OS-specific templates.
+- mise installs runtimes, common CLI tools, and a small pacman/brew package layer.
+- uv installs global Python CLI tools.
+- Arch AUR usage is intentionally limited to a small allowlist.
+- macOS GUI apps are installed with a small brew cask script.
 
 The installation can be as simple as 
 ```bash

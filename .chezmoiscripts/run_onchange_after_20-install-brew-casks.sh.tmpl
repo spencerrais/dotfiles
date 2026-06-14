@@ -1,0 +1,27 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+casks=(
+  1password
+  brave-browser
+  spotify
+  alacritty
+  docker-desktop
+)
+
+if ! command -v brew >/dev/null 2>&1; then
+  echo "Homebrew is required but not installed."
+  exit 1
+fi
+
+brew update
+
+for cask in "${casks[@]}"; do
+  if brew list --cask "$cask" >/dev/null 2>&1; then
+    echo "Already installed: $cask"
+  else
+    brew install --cask "$cask"
+  fi
+done
+{{ end -}}
