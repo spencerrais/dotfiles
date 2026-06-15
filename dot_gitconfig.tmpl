@@ -3,13 +3,14 @@
 	email = {{ .email | quote }}
 	signingkey = "~/.ssh/id_ed25519"
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = "~/.config/git/gitignore"
 	autocrlf = input
 [column]
 	ui = auto
 [branch]
 	sort = -committerdate
+    autosetupmerge = simple
 [tag]
 	sort = version:refname
 [push]
@@ -20,7 +21,7 @@
 	prune = true
 	pruneTags = true
 	all = true
-[pull] 
+[pull]
 	rebase = true
 [merge]
 	conflictStyle = zdiff3

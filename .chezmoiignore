@@ -1,2 +1,5 @@
 README.md
 LICENSE
+{{ if eq .chezmoi.os "darwin" }}
+.config/paru/paru.conf
+{{ end }}
