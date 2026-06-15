@@ -4,6 +4,7 @@ vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.swapfile = false
+vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.expandtab = true
 vim.opt.termguicolors = true
@@ -57,9 +58,10 @@ require "nvim-treesitter.configs".setup({
 -- autoformatting
 require("conform").setup({
   formatters_by_ft = {
-    python = { "isort", "ruff_format" },
+    python = { "isort", "ruff_fix", "ruff_format" },
     go = { "goimports", "gofumpt" },
     json = { "jq" },
+    hcl = { "terraform_fmt" },
   },
   format_on_save = function(bufnr)
     local ft = vim.bo[bufnr].filetype
