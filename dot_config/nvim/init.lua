@@ -29,7 +29,7 @@ vim.pack.add({
   { src = "https://github.com/folke/which-key.nvim" },
   { src = "https://github.com/lewis6991/gitsigns.nvim" },
   { src = "https://github.com/m4xshen/hardtime.nvim" },
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+  { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
   { src = "https://github.com/stevearc/conform.nvim" },
 })
 
@@ -48,20 +48,30 @@ require "gitsigns".setup {
 }
 
 -- treesitter
-require "nvim-treesitter.configs".setup({
-  ensure_installed = { "go", "lua", "python", "bash", "yaml" },
-  sync_install = false,
-  auto_install = true,
-  highlight = { enable = true },
+-- hcl has issues with LSP sometimes
+vim.filetype.add({
+  extension = { hcl = "terraform" }
+})
+
+require("nvim-treesitter").install({
+  "go", "lua", "python", "bash", "yaml", "terraform", "hcl", "json",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("TreesitterStart", { clear = true }),
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+  end,
 })
 
 -- autoformatting
 require("conform").setup({
   formatters_by_ft = {
-    python = { "isort", "ruff_fix", "ruff_format" },
+    python = { "ruff_fix", "ruff_format" },
     go = { "goimports", "gofumpt" },
     json = { "jq" },
     hcl = { "terraform_fmt" },
+    terraform = { "terraform_fmt" },
   },
   format_on_save = function(bufnr)
     local ft = vim.bo[bufnr].filetype
@@ -86,8 +96,8 @@ vim.lsp.config("lua_ls",
   })
 
 -- movement
-vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'half page up and center' })
-vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'half page down and center' })
+vim.keymap.set('n', '<leader>u', '<C-u>zz', { desc = 'half page up and center' })
+vim.keymap.set('n', '<leader>d', '<C-d>zz', { desc = 'half page down and center' })
 
 -- file changes
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>', { desc = 'update and source' })
