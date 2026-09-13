@@ -7,10 +7,24 @@ if ! command -v docker >/dev/null 2>&1; then
   exit 0
 fi
 
-sudo systemctl enable --now docker.service
+if ! getent group docker >/dev/null 2>&1; then
+  sudo groupadd docker
+fi
 
-if ! groups "$USER" | grep -qw docker; then
+if ! id -nG "$USER" | grep -qw docker; then
   sudo usermod -aG docker "$USER"
   echo "Added $USER to docker group. Log out and back in for this to take effect."
+fi
+
+sudo systemctl enable docker.service
+
+if ! sudo systemctl start docker.service; then
+  echo
+  echo "Docker failed to start:"
+  sudo systemctl status docker.service --no-pager -l || true
+  echo
+  echo "Recent Docker logs:"
+  sudo journalctl -u docker.service -b --no-pager -n 50 || true
+  exit 1
 fi
 {{ end -}}
